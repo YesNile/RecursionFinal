@@ -1,0 +1,10 @@
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\bin\Debug\howto_hilbert_curve.exe
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\bin\Debug\howto_hilbert_curve.pdb
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\RecursionFinal.csproj.AssemblyReference.cache
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\RecursionFinal.csproj.SuggestedBindingRedirects.cache
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\howto_hilbert_curve.Form1.resources
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\howto_hilbert_curve.Properties.Resources.resources
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\RecursionFinal.csproj.GenerateResource.cache
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\RecursionFinal.csproj.CoreCompileInputs.cache
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\howto_hilbert_curve.exe
+D:\Users\Данил\RiderProjects\RecursionFinal\RecursionFinal\obj\Debug\howto_hilbert_curve.pdb

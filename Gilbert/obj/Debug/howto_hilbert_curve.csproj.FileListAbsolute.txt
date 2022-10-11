@@ -1,0 +1,10 @@
+C:\Users\Данил\Desktop\howto_hilbert_curve\bin\Debug\howto_hilbert_curve.exe
+C:\Users\Данил\Desktop\howto_hilbert_curve\bin\Debug\howto_hilbert_curve.pdb
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.csproj.AssemblyReference.cache
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.csproj.SuggestedBindingRedirects.cache
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.Form1.resources
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.Properties.Resources.resources
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.csproj.GenerateResource.cache
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.csproj.CoreCompileInputs.cache
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.exe
+C:\Users\Данил\Desktop\howto_hilbert_curve\obj\Debug\howto_hilbert_curve.pdb

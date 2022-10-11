@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gilbert", "Gilbert\Gilbert.csproj", "{73C17C57-2843-44B8-B4F9-D871E0FD3F86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HanoiTower", "HanoiTower\HanoiTower.csproj", "{3192A204-719A-4993-9BCE-60AF474C7ADD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73C17C57-2843-44B8-B4F9-D871E0FD3F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73C17C57-2843-44B8-B4F9-D871E0FD3F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73C17C57-2843-44B8-B4F9-D871E0FD3F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73C17C57-2843-44B8-B4F9-D871E0FD3F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3192A204-719A-4993-9BCE-60AF474C7ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3192A204-719A-4993-9BCE-60AF474C7ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3192A204-719A-4993-9BCE-60AF474C7ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3192A204-719A-4993-9BCE-60AF474C7ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
