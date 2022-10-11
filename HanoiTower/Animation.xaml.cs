@@ -120,11 +120,11 @@ public partial class Animation
     }
     private void HanoiTower(int n, int from=0, int to=1, int aux=2)
     {
-        if (n <= 0) return;
+        if (n <= 0) return;//условие выхода из рекурсии
         
-        HanoiTower(n - 1, from, aux, to);
+        HanoiTower(n - 1, from, aux, to);//рекурсивный вызов метода
         
-        _movementsList.Add(new Tuple<int, int>(from, to));
+        _movementsList.Add(new Tuple<int, int>(from, to));//добавление шага
         
         HanoiTower(n - 1, aux, to, from);
     }
