@@ -1,44 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace Hanoi;
+namespace HanoiTower;
 
 public partial class Animation 
 {
-    readonly int _ringsCount;
-    readonly List<Tuple<int, int>> _movementsList = new();
-    public Animation(HelpClass help)
+    private const double speed= 2*0.35;
+    readonly int _countOfRings;
+    readonly List<Tuple<int, int>> _motion = new();
+    
+    public Animation(Helper help)
     {
         InitializeComponent();
-        _ringsCount = help.RingsCount;
+        _countOfRings = help.RingsCount;
         Start();
     }
-    private void CreateField()
+    private async void Start()
     {
-        Col1.Children.Clear();
-        Col2.Children.Clear();
-        Col3.Children.Clear();
-
-        int ringWidth = HelpClass.RingMinWidth;
-        for (int i = 0; i < _ringsCount; i++)
+        CreateArea();
+        HanoiTower(_countOfRings);
+        foreach(var tuple in _motion)
         {
-            Rectangle r = new Rectangle
-            {
-                Width = ringWidth - i * (HelpClass.Difference),
-                Height = HelpClass.RingHeight,
-                Fill = HelpClass.ColorBrash(HelpClass.Colors.ColorsList[i])
-            };
-            Canvas.SetLeft(r, 120 - r.Width / 2);
-            Canvas.SetBottom(r, r.Height *i);
-            Col1.Children.Add(r);
+            await Move(tuple.Item1, tuple.Item2);
         }
     }
+    private void HanoiTower(int n, int from=0, int to=1, int dest=2)
+    {
+        if (n <= 0) return;
+        
+        HanoiTower(n - 1, from, dest, to);
+        
+        _motion.Add(new Tuple<int, int>(from, to));
+        
+        HanoiTower(n - 1, dest, to, from);
+    }
+    private void Anima(Rectangle rec, int to, DoubleAnimation leftAnimation, DoubleAnimation bottomAnimation)
+    { 
+        leftAnimation.From = Canvas.GetLeft(rec);
+        bottomAnimation.From = Canvas.GetBottom(rec);
 
+        switch (to)
+        {
+            case 0:
+                leftAnimation.To = Canvas.GetLeft(Column1) + ((Column1.Width / 2) - (rec.Width / 2));
+                bottomAnimation.To = Canvas.GetBottom(Column1) + (Column1.Children.Count * Helper.RingHeight);
+                break;
+            case 1:
+                leftAnimation.To = Canvas.GetLeft(Column2) + ((Column2.Width / 2) - rec.Width / 2);
+                bottomAnimation.To = Canvas.GetBottom(Column1) + (Column2.Children.Count * Helper.RingHeight);
+                break;
+            case 2:
+                leftAnimation.To = Canvas.GetLeft(Column3) + (Column3.Width / 2 - rec.Width / 2);
+                bottomAnimation.To = Canvas.GetBottom(Column1) + (Column3.Children.Count * Helper.RingHeight);
+                break;
+        }
+        leftAnimation.Duration = TimeSpan.FromSeconds(speed);
+        bottomAnimation.Duration = TimeSpan.FromSeconds(speed);
+    }
 
     private void RectangleCopy(Rectangle source, Rectangle copy, int sourceCol)
     {
@@ -49,57 +71,35 @@ public partial class Animation
         switch (sourceCol)
         {
             case 0:
-                Canvas.SetLeft(copy, Canvas.GetLeft(source) + Canvas.GetLeft(Col1));
-                Canvas.SetBottom(copy, Canvas.GetBottom(source) + Canvas.GetBottom(Col1));
+                Canvas.SetLeft(copy, Canvas.GetLeft(source) + Canvas.GetLeft(Column1));
+                Canvas.SetBottom(copy, Canvas.GetBottom(source) + Canvas.GetBottom(Column1));
                 break;
             case 1:
-                Canvas.SetLeft(copy, Canvas.GetLeft(source) + Canvas.GetLeft(Col2));
-                Canvas.SetBottom(copy, Canvas.GetBottom(source) + Canvas.GetBottom(Col2));
+                Canvas.SetLeft(copy, Canvas.GetLeft(source) + Canvas.GetLeft(Column2));
+                Canvas.SetBottom(copy, Canvas.GetBottom(source) + Canvas.GetBottom(Column2));
                 break;
             case 2:
-                Canvas.SetLeft(copy, Canvas.GetLeft(source) + Canvas.GetLeft(Col3));
-                Canvas.SetBottom(copy, Canvas.GetBottom(source) + Canvas.GetBottom(Col3));
+                Canvas.SetLeft(copy, Canvas.GetLeft(source) + Canvas.GetLeft(Column3));
+                Canvas.SetBottom(copy, Canvas.GetBottom(source) + Canvas.GetBottom(Column3));
                 break;
         }
     }
-    private void Anima(Rectangle r, int to, DoubleAnimation leftAnimation, DoubleAnimation bottomAnimation)
-    { 
-        leftAnimation.From = Canvas.GetLeft(r);
-        bottomAnimation.From = Canvas.GetBottom(r);
-
-        switch (to)
-        {
-            case 0:
-                leftAnimation.To = Canvas.GetLeft(Col1) + ((Col1.Width / 2) - (r.Width / 2));
-                bottomAnimation.To = Canvas.GetBottom(Col1) + (Col1.Children.Count * HelpClass.RingHeight);
-                break;
-            case 1:
-                leftAnimation.To = Canvas.GetLeft(Col2) + ((Col2.Width / 2) - r.Width / 2);
-                bottomAnimation.To = Canvas.GetBottom(Col1) + (Col2.Children.Count * HelpClass.RingHeight);
-                break;
-            case 2:
-                leftAnimation.To = Canvas.GetLeft(Col3) + (Col3.Width / 2 - r.Width / 2);
-                bottomAnimation.To = Canvas.GetBottom(Col1) + (Col3.Children.Count * HelpClass.RingHeight);
-                break;
-        }
-        leftAnimation.Duration = TimeSpan.FromSeconds((int)Slider.Value * 0.35);
-        bottomAnimation.Duration = TimeSpan.FromSeconds((int)Slider.Value * 0.35);
-    }
+    
     private async Task Move(int from,int to)
     {
         Canvas fromCol = from switch
         {
-            0 => Col1,
-            1 => Col2,
-            2 => Col3,
-            _ => Col1
+            0 => Column1,
+            1 => Column2,
+            2 => Column3,
+            _ => Column1
         };
         Canvas toCol = to switch
         {
-            0 => Col1,
-            1 => Col2,
-            2 => Col3,
-            _ => Col1
+            0 => Column1,
+            1 => Column2,
+            2 => Column3,
+            _ => Column1
         };
         DoubleAnimation leftAnimation = new DoubleAnimation();
         DoubleAnimation bottomAnimation = new DoubleAnimation();
@@ -113,32 +113,31 @@ public partial class Animation
         MainCanvas.Children.Add(copy);
         copy.BeginAnimation(Canvas.LeftProperty,leftAnimation);
         copy.BeginAnimation(Canvas.BottomProperty, bottomAnimation);
-        Canvas.SetBottom(r, toCol.Children.Count * HelpClass.RingHeight);
-        await Task.Delay((int) (Slider.Value * 350));
+        Canvas.SetBottom(r, toCol.Children.Count * Helper.RingHeight);
+        await Task.Delay((int)(speed*1000));
         toCol.Children.Add(r);
         MainCanvas.Children.Remove(copy);
     }
-    private void HanoiTower(int n, int from=0, int to=1, int aux=2)
+    
+    private void CreateArea()
     {
-        if (n <= 0) return;//условие выхода из рекурсии
-        
-        HanoiTower(n - 1, from, aux, to);//рекурсивный вызов метода
-        
-        _movementsList.Add(new Tuple<int, int>(from, to));//добавление шага
-        
-        HanoiTower(n - 1, aux, to, from);
-    }
-    private async void Start()
-    {
-        CreateField();
-        HanoiTower(_ringsCount);
-        foreach(var t in _movementsList)
+        Column1.Children.Clear();
+        Column2.Children.Clear();
+        Column3.Children.Clear();
+
+        int ringWidth = Helper.RingMinWidth;
+        for (int i = 0; i < _countOfRings; i++)
         {
-            await Move(t.Item1, t.Item2);
+            Rectangle r = new Rectangle
+            {
+                Width = ringWidth - i * (Helper.Difference),
+                Height = Helper.RingHeight,
+                Fill = Helper.ColorBrash(Helper.Colors.ColorsList[i])
+            };
+            Canvas.SetLeft(r, 120 - r.Width / 2);
+            Canvas.SetBottom(r, r.Height *i);
+            Column1.Children.Add(r);
         }
     }
-    private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        ((Slider)sender).SelectionEnd = e.NewValue;
-    }
+    
 }

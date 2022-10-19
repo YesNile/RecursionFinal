@@ -1,17 +1,21 @@
-﻿<Window x:Class="Hanoi.MainWindow"
+﻿<Window x:Class="HanoiTower.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Меню" Height="300" Width="300"
+        Title="Main" Height="500" Width="500" Background="#3d3d3d"
         WindowStartupLocation="CenterScreen">
     <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <TextBlock x:Name="DevelopBy" FontSize="8" RenderTransformOrigin="1.29,7.712" Text="Developed by Kholmov Danil and Bespalov Nikita"/>
+            <TextBox x:Name="Git" BorderThickness="0" Text="https://github.com/YesNile/RecursionFinal" Background ="#3d3d3d" FontSize="8" Width="154" RenderTransformOrigin="0.578,0.48" Height="14"/>
+        </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Height="30" FontSize="20" HorizontalAlignment="Left" Margin="10,10,0 ,0"  Text="Количество колец:" VerticalAlignment="Top" RenderTransformOrigin="1.823,7.712" />
-            
-            <TextBox MaxLength="2" Name="RingCount" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0 ,0" Text="8" TextAlignment="Center" FontSize="20"/>
-            <Button FontSize="20" Content="Начать" Height="30" Width="75" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0 ,0"/>
+            <TextBlock Height="40" FontSize="30" HorizontalAlignment="Left" Margin="10,10,0 ,0"  Foreground="WhiteSmoke" Text="Number of rings:" VerticalAlignment="Top" RenderTransformOrigin="1.823,7.712" />
+
+            <TextBox MaxLength="2" BorderThickness="0" Name="RingCount" Height="40" Width="40" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,10,0 ,0" Text="1" TextAlignment="Center" FontSize="24"/>
+            <Button FontSize="20" Content="Let's Go!" BorderThickness="0" Background="WhiteSmoke" Foreground="#3d3d3d" Height="30" Width="90" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,10,0 ,0"/>
         </StackPanel>
     </Grid>
 </Window>
